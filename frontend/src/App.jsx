@@ -3,77 +3,72 @@ import { useState, useEffect } from "react";
 const PRODUCTS = [
   {
     id: 1,
-    name: "Car Hammock Seat Cover",
-    tagline: "Your backseat will thank you.",
-    desc: "Heavy-duty waterproof hammock keeps fur, mud, and claws off your seats. Fits all SUVs and trucks. Installs in 60 seconds.",
-    price: 58,
-    cost: 12,
+    name: "Rechargeable LED Safety Collar",
+    tagline: "Seen from 500m. Every night.",
+    desc: "Keep your dog visible on every walk. USB-C rechargeable LED collar glows up to 500m — waterproof, lightweight, and built for night adventures.",
+    price: 24.99,
+    cost: 9.02,
     badge: "BEST SELLER",
     badgeColor: "#c8721a",
-    tag: "CAR GEAR",
+    tag: "SAFETY",
     img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
-    features: ["Waterproof & scratch-proof", "Universal SUV fit", "60-sec install"],
-    tiktok: "Dog riding in clean car vs destroyed interior",
+    features: ["USB-C fast charge", "Visible up to 500m", "IPX6 waterproof"],
     deliveryDays: "5-8",
   },
   {
     id: 2,
-    name: "No-Pull Trail Harness",
+    name: "No-Pull Tactical Dog Harness",
     tagline: "Control on the trail. Comfort off it.",
-    desc: "Breathable mesh harness with front clip anti-pull design. Reflective trim for dawn and dusk adventures. Sizes S–XL.",
-    price: 42,
-    cost: 8,
+    desc: "Finally — a harness your dog can't pull out of. Dual attachment points give you full control on trails, streets, and everywhere in between.",
+    price: 38.99,
+    cost: 6.14,
     badge: "TOP RATED",
     badgeColor: "#2a7a3a",
     tag: "TRAIL GEAR",
-    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
-    features: ["Front-clip no-pull", "Breathable mesh", "Reflective trim"],
-    tiktok: "Before/after walk with harness vs collar",
+    img: "https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?w=600&q=80",
+    features: ["Dual attachment points", "No-pull front clip", "Sizes S–XL"],
     deliveryDays: "5-8",
   },
   {
     id: 3,
-    name: "Magnetic Window Shade",
-    tagline: "Hot car? Not anymore.",
-    desc: "Blocks 97% of UV rays and keeps your dog cool on long drives. Magnetic edges grip any window. Installs in 10 seconds.",
-    price: 38,
-    cost: 5,
-    badge: "HIGH MARGIN",
+    name: "Portable Weatherproof Dog Shelter",
+    tagline: "Their home. Anywhere.",
+    desc: "Sets up in seconds and protects your dog from rain, wind, and sun — built for camping, road trips, and backyard use.",
+    price: 54.99,
+    cost: 14.88,
+    badge: "STAFF PICK",
     badgeColor: "#1a5a7a",
-    tag: "CAR GEAR",
+    tag: "OUTDOOR GEAR",
     img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80",
-    features: ["Blocks 97% UV rays", "Magnetic hold", "10-sec install"],
-    tiktok: "Dog panting vs cool dog with shade installed",
-    deliveryDays: "10-15",
+    features: ["100% waterproof", "Quick setup", "Portable & packable"],
+    deliveryDays: "5-8",
   },
   {
     id: 4,
-    name: "Trail Water Bottle",
-    tagline: "Hydration built for the trail.",
-    desc: "One-handed squeeze bottle with integrated dog bowl. 750ml BPA-free. Built for hikers, trail runners, and PNW adventures.",
-    price: 32,
-    cost: 6,
-    badge: "STAFF PICK",
-    badgeColor: "#2a5a7a",
-    tag: "OUTDOOR GEAR",
+    name: "Waterproof Dog Blanket",
+    tagline: "One blanket. Zero mess.",
+    desc: "Waterproof and urine-proof backing keeps fur, mud, and moisture off your car seats and furniture. Machine washable, anti-slip, fits any size.",
+    price: 34.99,
+    cost: 12.36,
+    badge: "CAR ESSENTIAL",
+    badgeColor: "#7a4a1a",
+    tag: "CAR GEAR",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-    features: ["750ml BPA-free", "Integrated dog bowl", "One-hand operation"],
-    tiktok: "Dog hiking thirst problem solved",
+    features: ["Waterproof & urine-proof", "Machine washable", "Anti-slip backing"],
     deliveryDays: "5-8",
   },
   {
     id: 5,
-    name: "LED Safety Collar",
-    tagline: "Seen from 500m. Every night.",
-    desc: "USB-C rechargeable LED collar with 3 light modes. IPX6 waterproof. Sizes S/M/L. Because dawn and dusk walks shouldn't be risky.",
-    price: 34,
-    cost: 7,
-    badge: "VIRAL",
-    badgeColor: "#7a2a7a",
-    tag: "SAFETY",
+    name: "Collapsible Travel Dog Bowl",
+    tagline: "Hydration on every adventure.",
+    desc: "Folds flat, clips to any bag, and holds food and water in separate compartments. The easiest way to keep your dog fed and hydrated on the go.",
+    price: 19.99,
+    cost: 4.53,
+    badge: "GREAT VALUE",
+    badgeColor: "#2a5a7a",
+    tag: "OUTDOOR GEAR",
     img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
-    features: ["3 light modes", "IPX6 waterproof", "USB-C fast charge"],
-    tiktok: "Glowing dog at night — instantly shareable",
+    features: ["Foldable silicone", "Dual compartments", "Clips to any bag"],
     deliveryDays: "5-8",
   },
 ];
@@ -281,7 +276,7 @@ export default function PackDogStore() {
   const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
-  const categories = ["ALL", "CAR GEAR", "TRAIL GEAR", "OUTDOOR GEAR", "SAFETY"];
+  const categories = ["ALL", "SAFETY", "TRAIL GEAR", "OUTDOOR GEAR", "CAR GEAR"];
   const filtered = filter === "ALL" ? PRODUCTS : PRODUCTS.filter(p => p.tag === filter);
 
   return (
@@ -372,7 +367,7 @@ export default function PackDogStore() {
       {/* ── HERO ── */}
       <div style={{ position: "relative", height: "92vh", minHeight: 560, overflow: "hidden", display: "flex", alignItems: "center" }}>
         <img
-          src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1400&q=80"
+          src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?w=1400&q=80"
           alt="Adventure dog"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
@@ -426,206 +421,4 @@ export default function PackDogStore() {
         </div>
       </div>
 
-      {/* ── CHARITY STRIP ── */}
-      <div style={{ background: "#f0e8d4", borderTop: "1px solid #e0d0b8", borderBottom: "1px solid #e0d0b8", padding: "18px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
-          <span style={{ fontSize: 22 }}>🐾</span>
-          <span style={{ fontFamily: "'Lora'", fontSize: 14, color: "#4a3a2a", fontStyle: "italic" }}>
-            10% of every order goes to <strong style={{ fontStyle: "normal", color: "#122112" }}>Best Friends Animal Society</strong> — helping end the killing of dogs and cats in America's shelters.
-          </span>
-          <a href="https://bestfriends.org" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "#c8721a", textTransform: "uppercase", textDecoration: "none", whiteSpace: "nowrap" }}>Learn More ↗</a>
-        </div>
-      </div>
-
-      {/* ── PRODUCTS ── */}
-      <div id="shop" style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40, flexWrap: "wrap", gap: 20 }}>
-          <div>
-            <div style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: "#c8721a", marginBottom: 8 }}>The Collection</div>
-            <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: 48, color: "#122112", letterSpacing: 2, lineHeight: 1 }}>EVERYTHING YOUR DOG NEEDS</h2>
-          </div>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {categories.map(c => (
-              <button key={c} className={`filter-btn ${filter === c ? "active" : ""}`} onClick={() => setFilter(c)}>{c}</button>
-            ))}
-          </div>
-        </div>
-
-        <div className="product-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {filtered.map((product) => (
-            <div key={product.id} className="product-card">
-              <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src={product.img} alt={product.name} />
-                <div style={{ position: "absolute", top: 12, left: 12 }}>
-                  <span style={{ background: product.badgeColor, color: "#fff", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: "4px 8px", textTransform: "uppercase" }}>
-                    {product.badge}
-                  </span>
-                </div>
-                <div style={{ position: "absolute", top: 12, right: 12 }}>
-                  <span style={{ background: "#f5ede0", color: "#4a4a4a", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 600, letterSpacing: 1.5, padding: "4px 8px", textTransform: "uppercase" }}>
-                    {product.tag}
-                  </span>
-                </div>
-                {added === product.id && (
-                  <div style={{ position: "absolute", inset: 0, background: "#122112dd", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ fontFamily: "'Bebas Neue'", fontSize: 24, color: "#f5ede0", letterSpacing: 3 }}>ADDED ✓</span>
-                  </div>
-                )}
-              </div>
-              <div style={{ padding: "18px 20px 0" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: 20, color: "#122112", letterSpacing: 1, lineHeight: 1.2, flex: 1 }}>{product.name}</h3>
-                  <span style={{ fontFamily: "'Bebas Neue'", fontSize: 22, color: "#c8721a", letterSpacing: 1, marginLeft: 12 }}>${product.price}</span>
-                </div>
-                <p style={{ fontFamily: "'Lora'", fontSize: 12, color: "#6b6b6b", marginTop: 6, lineHeight: 1.65, fontStyle: "italic" }}>{product.tagline}</p>
-                <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-                  {product.features.map(f => (
-                    <span key={f} style={{ fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 600, letterSpacing: 1, color: "#2a7a3a", background: "#e8f4e8", padding: "3px 7px", textTransform: "uppercase" }}>✓ {f}</span>
-                  ))}
-                </div>
-                <div style={{ marginTop: 10, marginBottom: 12, fontSize: 11, color: "#999", fontFamily: "'DM Sans'" }}>
-                  Ships in {product.deliveryDays} days from US
-                </div>
-              </div>
-              <button className="add-btn" onClick={() => addToCart(product)}>
-                ADD TO CART — ${product.price}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── BUNDLE DEAL ── */}
-      <div style={{ background: "#122112", padding: "60px 24px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
-          <div>
-            <div style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 700, letterSpacing: 3, color: "#c8721a", textTransform: "uppercase", marginBottom: 12 }}>Best Value</div>
-            <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: 52, color: "#f5ede0", letterSpacing: 2, lineHeight: 1, marginBottom: 20 }}>THE ROAD TRIP BUNDLE</h2>
-            <p style={{ fontFamily: "'Lora'", fontSize: 15, color: "#c8d4b0", lineHeight: 1.8, marginBottom: 28 }}>
-              Hammock + Water Bottle + LED Collar. Everything you need for every adventure. Bundled together at a price that makes sense.
-            </p>
-            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32 }}>
-              <span style={{ fontFamily: "'Bebas Neue'", fontSize: 48, color: "#c8721a", letterSpacing: 2 }}>$108</span>
-              <div>
-                <div style={{ fontFamily: "'DM Sans'", fontSize: 12, color: "#c8d4b070", textDecoration: "line-through" }}>$124 separate</div>
-                <div style={{ fontFamily: "'DM Sans'", fontSize: 12, fontWeight: 700, color: "#6abf6a", letterSpacing: 1 }}>SAVE $16</div>
-              </div>
-            </div>
-            <button className="btn-primary" style={{ fontSize: 14, padding: "16px 40px" }}>GET THE BUNDLE</button>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            {[PRODUCTS[0], PRODUCTS[3], PRODUCTS[4]].slice(0, 4).map(p => (
-              <div key={p.id} style={{ background: "#1a3a1c", overflow: "hidden" }}>
-                <img src={p.img} alt={p.name} style={{ width: "100%", height: 100, objectFit: "cover" }} />
-                <div style={{ padding: "10px 12px" }}>
-                  <div style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 700, color: "#c8d4b0", letterSpacing: 1, textTransform: "uppercase" }}>{p.name}</div>
-                  <div style={{ fontFamily: "'Bebas Neue'", fontSize: 16, color: "#c8721a", marginTop: 2 }}>${p.price}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── BRAND STORY ── */}
-      <div style={{ background: "#f5ede0", padding: "80px 24px" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 700, letterSpacing: 3, color: "#c8721a", textTransform: "uppercase", marginBottom: 16 }}>Our Story</div>
-          <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: 56, color: "#122112", letterSpacing: 2, lineHeight: 1, marginBottom: 28 }}>BUILT FOR THE DOG THAT NEVER SITS STILL</h2>
-          <p style={{ fontFamily: "'Lora'", fontSize: 16, color: "#4a4a4a", lineHeight: 1.9, marginBottom: 20 }}>
-            PackDog started because adventure dogs deserve gear that keeps up with them. Not generic pet store stuff — real, tested, trail-ready gear for dogs that ride shotgun on road trips, leap into rivers, and somehow always find the muddiest path.</p>
-          <p style={{ fontFamily: "'Lora'", fontSize: 15, color: "#6b6b6b", lineHeight: 1.9 }}>
-            Whether you're driving cross-country, hitting a weekend trail, or just living life with a dog who never sits still — we've got the gear.
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 48, marginTop: 48 }}>
-            {[["🏔", "Adventure Ready"], ["🐕", "Dog Tested"], ["🚗", "Road Approved"]].map(([icon, text]) => (
-              <div key={text} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 28, marginBottom: 8 }}>{icon}</div>
-                <div style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#122112", textTransform: "uppercase" }}>{text}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── REVIEWS ── */}
-      <div style={{ background: "#e6d4ba", padding: "72px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <div style={{ fontFamily: "'DM Sans'", fontSize: 11, fontWeight: 700, letterSpacing: 3, color: "#c8721a", textTransform: "uppercase", marginBottom: 12 }}>What Dog Owners Say</div>
-            <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: 48, color: "#122112", letterSpacing: 2 }}>REAL DOGS. REAL RESULTS.</h2>
-          </div>
-          <div className="review-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="review-card">
-                <div style={{ display: "flex", gap: 2, marginBottom: 12 }}>
-                  {[...Array(r.stars)].map((_, s) => <span key={s} style={{ color: "#c8721a", fontSize: 14 }}>★</span>)}
-                </div>
-                <p style={{ fontFamily: "'Lora'", fontSize: 14, color: "#2a2a2a", lineHeight: 1.8, marginBottom: 16, fontStyle: "italic" }}>"{r.text}"</p>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                  <div>
-                    <div style={{ fontFamily: "'DM Sans'", fontSize: 12, fontWeight: 700, color: "#122112" }}>{r.name}</div>
-                    <div style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "#8b6a4a", marginTop: 2 }}>🐾 {r.dog}</div>
-                  </div>
-                  <span style={{ fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "#c8721a", background: "#f5ede0", padding: "4px 8px", textTransform: "uppercase" }}>
-                    {r.product}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── TIKTOK CTA ── */}
-      <div style={{ background: "#091509", padding: "60px 24px", textAlign: "center", position: "relative", overflow: "hidden" }}>
-        <div className="grain" />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ fontFamily: "'Bebas Neue'", fontSize: 13, letterSpacing: 4, color: "#c8721a", marginBottom: 12 }}>FOLLOW THE PACK</div>
-          <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: 52, color: "#f5ede0", letterSpacing: 2, marginBottom: 16 }}>@PACKDOG ON TIKTOK</h2>
-          <p style={{ fontFamily: "'Lora'", fontSize: 15, color: "#c8d4b080", marginBottom: 32 }}>
-            Dogs in cars. Trail content. Zero fluff.
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
-            {["Dog riding in clean car vs destroyed interior 🚗", "Glowing dog at night — instantly shareable 🔦", "10-second window shade install ⚡"].map(t => (
-              <div key={t} style={{ background: "#1a3a1c", border: "1px solid #2a4a2a", padding: "12px 20px", maxWidth: 220 }}>
-                <div style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "#c8d4b0", lineHeight: 1.6 }}>{t}</div>
-              </div>
-            ))}
-          </div>
-          <button className="btn-primary" style={{ marginTop: 36 }}>FOLLOW FOR DOG CONTENT</button>
-        </div>
-      </div>
-
-      {/* ── FOOTER ── */}
-      <footer style={{ background: "#060c06", padding: "40px 24px 24px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 32, flexWrap: "wrap", gap: 24 }}>
-            <div>
-              <div style={{ fontFamily: "'Bebas Neue'", fontSize: 28, color: "#f5ede0", letterSpacing: 3, marginBottom: 8 }}>
-                PACK<span style={{ color: "#c8721a" }}>DOG</span>
-              </div>
-              <div style={{ fontFamily: "'Lora'", fontSize: 12, color: "#4a6a4a", fontStyle: "italic" }}>Gear for dogs that go places.</div>
-              <div style={{ marginTop: 12, fontFamily: "'DM Sans'", fontSize: 10, color: "#c8721a", letterSpacing: 1 }}>🐾 10% TO BEST FRIENDS ANIMAL SOCIETY</div>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-              {[["Shop", ["All Products", "Car Gear", "Trail Gear", "Bundles"]], ["Company", ["About", "TikTok", "Contact", "Returns"]]].map(([title, links]) => (
-                <div key={title}>
-                  <div style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 700, letterSpacing: 3, color: "#c8721a", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
-                  {links.map(l => (
-                    <div key={l} style={{ fontFamily: "'DM Sans'", fontSize: 12, color: "#4a6a4a", marginBottom: 8, cursor: "pointer" }}>{l}</div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ borderTop: "1px solid #1a2a1a", paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-            <div style={{ fontFamily: "'DM Sans'", fontSize: 10, color: "#2a4a2a", letterSpacing: 1 }}>© 2026 PACKDOG — ADVENTURE DOG GEAR</div>
-            <div style={{ fontFamily: "'DM Sans'", fontSize: 10, color: "#2a4a2a", letterSpacing: 1 }}>GEAR FOR DOGS THAT GO PLACES.</div>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-  );
-}
+      {/* ── CHARI
