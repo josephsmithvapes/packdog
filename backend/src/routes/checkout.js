@@ -64,8 +64,8 @@ router.post('/session', async (req, res) => {
           },
         },
       ],
-      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/cart`,
+      success_url: `${process.env.FRONTEND_URL}/packdog/success?session_id={CHECKOUT_SESSION_ID}`,
+cancel_url: `${process.env.FRONTEND_URL}/packdog/cart`,
       metadata: {
         // Store full cart for webhook processing
         cartJson: JSON.stringify(items),
