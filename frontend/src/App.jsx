@@ -26,7 +26,7 @@ const PRODUCTS = [
     badge: "TOP RATED",
     badgeColor: "#2a7a3a",
     tag: "TRAIL GEAR",
-    img: "https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
     features: ["Front-clip no-pull", "Breathable mesh", "Reflective trim"],
     tiktok: "Before/after walk with harness vs collar",
     deliveryDays: "5-8",
@@ -372,7 +372,7 @@ export default function PackDogStore() {
       {/* ── HERO ── */}
       <div style={{ position: "relative", height: "92vh", minHeight: 560, overflow: "hidden", display: "flex", alignItems: "center" }}>
         <img
-          src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?w=1400&q=80"
+          src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1400&q=80"
           alt="Adventure dog"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
