@@ -1,78 +1,5 @@
 import { useState, useEffect } from "react";
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Rechargeable LED Safety Collar",
-    tagline: "Seen from 500m. Every night.",
-    desc: "Keep your dog visible on every walk. USB-C rechargeable LED collar glows up to 500m — waterproof, lightweight, and built for night adventures.",
-    price: 24.99,
-    cost: 9.02,
-    badge: "BEST SELLER",
-    badgeColor: "#c8721a",
-    tag: "SAFETY",
-    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
-    features: ["USB-C fast charge", "Visible up to 500m", "IPX6 waterproof"],
-    deliveryDays: "5-8",
-  },
-  {
-    id: 2,
-    name: "No-Pull Tactical Dog Harness",
-    tagline: "Control on the trail. Comfort off it.",
-    desc: "Finally — a harness your dog can't pull out of. Dual attachment points give you full control on trails, streets, and everywhere in between.",
-    price: 38.99,
-    cost: 6.14,
-    badge: "TOP RATED",
-    badgeColor: "#2a7a3a",
-    tag: "TRAIL GEAR",
-    img: "https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?w=600&q=80",
-    features: ["Dual attachment points", "No-pull front clip", "Sizes S–XL"],
-    deliveryDays: "5-8",
-  },
-  {
-    id: 3,
-    name: "Portable Weatherproof Dog Shelter",
-    tagline: "Their home. Anywhere.",
-    desc: "Sets up in seconds and protects your dog from rain, wind, and sun — built for camping, road trips, and backyard use.",
-    price: 54.99,
-    cost: 14.88,
-    badge: "STAFF PICK",
-    badgeColor: "#1a5a7a",
-    tag: "OUTDOOR GEAR",
-    img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80",
-    features: ["100% waterproof", "Quick setup", "Portable & packable"],
-    deliveryDays: "5-8",
-  },
-  {
-    id: 4,
-    name: "Waterproof Dog Blanket",
-    tagline: "One blanket. Zero mess.",
-    desc: "Waterproof and urine-proof backing keeps fur, mud, and moisture off your car seats and furniture. Machine washable, anti-slip, fits any size.",
-    price: 34.99,
-    cost: 12.36,
-    badge: "CAR ESSENTIAL",
-    badgeColor: "#7a4a1a",
-    tag: "CAR GEAR",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-    features: ["Waterproof & urine-proof", "Machine washable", "Anti-slip backing"],
-    deliveryDays: "5-8",
-  },
-  {
-    id: 5,
-    name: "Collapsible Travel Dog Bowl",
-    tagline: "Hydration on every adventure.",
-    desc: "Folds flat, clips to any bag, and holds food and water in separate compartments. The easiest way to keep your dog fed and hydrated on the go.",
-    price: 19.99,
-    cost: 4.53,
-    badge: "GREAT VALUE",
-    badgeColor: "#2a5a7a",
-    tag: "OUTDOOR GEAR",
-    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80",
-    features: ["Foldable silicone", "Dual compartments", "Clips to any bag"],
-    deliveryDays: "5-8",
-  },
-];
-
 const REVIEWS = [
   { name: "Megan R.", dog: "Bruno, 3yr Malinois", stars: 5, text: "The hammock saved my leather seats on a 6-hour drive to Bend. Bruno destroyed everything before this. Absolute must-buy for road trip dogs.", product: "Car Hammock" },
   { name: "Tyler K.", dog: "Odin, 2yr Husky", stars: 5, text: "Trail harness is incredible. Odin used to drag me down every hill. First walk with this thing he was right at my side. Shocked.", product: "Trail Harness" },
@@ -81,10 +8,19 @@ const REVIEWS = [
 ];
 
 export default function PackDogStore() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [added, setAdded] = useState(null);
   const [filter, setFilter] = useState("ALL");
+
+  useEffect(() => {
+    fetch("https://packdog-production.up.railway.app/api/products")
+      .then(r => r.json())
+      .then(data => { setProducts(data.products || []); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -277,7 +213,7 @@ export default function PackDogStore() {
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
   const categories = ["ALL", "SAFETY", "TRAIL GEAR", "OUTDOOR GEAR", "CAR GEAR"];
-  const filtered = filter === "ALL" ? PRODUCTS : PRODUCTS.filter(p => p.tag === filter);
+  const filtered = filter === "ALL" ? products : products.filter(p => p.category === filter.toLowerCase().replace(" ", "-"));
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#f5ede0", minHeight: "100vh" }}>
@@ -421,7 +357,6 @@ export default function PackDogStore() {
         </div>
       </div>
 
-      
       {/* ── CHARITY STRIP ── */}
       <div style={{ background: "#f0e8d4", borderTop: "1px solid #e0d0b8", borderBottom: "1px solid #e0d0b8", padding: "18px 24px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
@@ -448,18 +383,17 @@ export default function PackDogStore() {
         </div>
 
         <div className="product-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {filtered.map((product) => (
+          {loading ? (
+            <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "60px 0", fontFamily: "'Lora'", color: "#8b6a4a", fontSize: 15, fontStyle: "italic" }}>
+              Loading gear...
+            </div>
+          ) : filtered.map((product) => (
             <div key={product.id} className="product-card">
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src={product.img} alt={product.name} />
+                <img src={product.image} alt={product.name} />
                 <div style={{ position: "absolute", top: 12, left: 12 }}>
-                  <span style={{ background: product.badgeColor, color: "#fff", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: "4px 8px", textTransform: "uppercase" }}>
-                    {product.badge}
-                  </span>
-                </div>
-                <div style={{ position: "absolute", top: 12, right: 12 }}>
-                  <span style={{ background: "#f5ede0", color: "#4a4a4a", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 600, letterSpacing: 1.5, padding: "4px 8px", textTransform: "uppercase" }}>
-                    {product.tag}
+                  <span style={{ background: "#c8721a", color: "#fff", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: "4px 8px", textTransform: "uppercase" }}>
+                    {product.category}
                   </span>
                 </div>
                 {added === product.id && (
@@ -473,9 +407,9 @@ export default function PackDogStore() {
                   <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: 20, color: "#122112", letterSpacing: 1, lineHeight: 1.2, flex: 1 }}>{product.name}</h3>
                   <span style={{ fontFamily: "'Bebas Neue'", fontSize: 22, color: "#c8721a", letterSpacing: 1, marginLeft: 12 }}>${product.price}</span>
                 </div>
-                <p style={{ fontFamily: "'Lora'", fontSize: 12, color: "#6b6b6b", marginTop: 6, lineHeight: 1.65, fontStyle: "italic" }}>{product.tagline}</p>
+                <p style={{ fontFamily: "'Lora'", fontSize: 12, color: "#6b6b6b", marginTop: 6, lineHeight: 1.65, fontStyle: "italic" }}>{product.description}</p>
                 <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-                  {product.features.map(f => (
+                  {(product.features || []).map(f => (
                     <span key={f} style={{ fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 600, letterSpacing: 1, color: "#2a7a3a", background: "#e8f4e8", padding: "3px 7px", textTransform: "uppercase" }}>✓ {f}</span>
                   ))}
                 </div>
@@ -510,9 +444,9 @@ export default function PackDogStore() {
             <button className="btn-primary" style={{ fontSize: 14, padding: "16px 40px" }}>GET THE BUNDLE</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            {[PRODUCTS[0], PRODUCTS[3], PRODUCTS[4]].slice(0, 4).map(p => (
+            {products.slice(0, 4).map(p => (
               <div key={p.id} style={{ background: "#1a3a1c", overflow: "hidden" }}>
-                <img src={p.img} alt={p.name} style={{ width: "100%", height: 100, objectFit: "cover" }} />
+                <img src={p.image} alt={p.name} style={{ width: "100%", height: 100, objectFit: "cover" }} />
                 <div style={{ padding: "10px 12px" }}>
                   <div style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 700, color: "#c8d4b0", letterSpacing: 1, textTransform: "uppercase" }}>{p.name}</div>
                   <div style={{ fontFamily: "'Bebas Neue'", fontSize: 16, color: "#c8721a", marginTop: 2 }}>${p.price}</div>
