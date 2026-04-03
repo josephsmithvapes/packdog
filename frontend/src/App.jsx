@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 const REVIEWS = [
-  { name: "Megan R.", dog: "Bruno, 3yr Malinois", stars: 5, text: "The hammock saved my leather seats on a 6-hour drive to Bend. Bruno destroyed everything before this. Absolute must-buy for road trip dogs.", product: "Car Hammock" },
-  { name: "Tyler K.", dog: "Odin, 2yr Husky", stars: 5, text: "Trail harness is incredible. Odin used to drag me down every hill. First walk with this thing he was right at my side. Shocked.", product: "Trail Harness" },
-  { name: "Jess M.", dog: "Peanut, 5yr Corgi", stars: 5, text: "That LED collar TikTok made me buy this instantly. My neighborhood has zero streetlights. Now I can see Peanut from inside the house.", product: "LED Collar" },
-  { name: "Carlos D.", dog: "Koda, 4yr Lab Mix", stars: 5, text: "We hike every weekend. This water bottle is compact, tough, and Koda figured it out immediately. Whole family uses PackDog gear now.", product: "Trail Water Bottle" },
+  { name: "Megan R.", dog: "Bruno, 3yr Malinois", stars: 5, text: "The hammock saved my leather seats on a 6-hour drive to Bend. Bruno destroyed everything before this. Absolute must-buy for road trip dogs.", : "Car Hammock" },
+  { name: "Tyler K.", dog: "Odin, 2yr Husky", stars: 5, text: "Trail harness is incredible. Odin used to drag me down every hill. First walk with this thing he was right at my side. Shocked.", : "Trail Harness" },
+  { name: "Jess M.", dog: "Peanut, 5yr Corgi", stars: 5, text: "That LED collar TikTok made me buy this instantly. My neighborhood has zero streetlights. Now I can see Peanut from inside the house.", : "LED Collar" },
+  { name: "Carlos D.", dog: "Koda, 4yr Lab Mix", stars: 5, text: "We hike every weekend. This water bottle is compact, tough, and Koda figured it out immediately. Whole family uses PackDog gear now.", : "Trail Water Bottle" },
 ];
 
 export default function PackDogStore() {
-  const [products, setProducts] = useState([]);
+  const [s, sets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -16,9 +16,9 @@ export default function PackDogStore() {
   const [filter, setFilter] = useState("ALL");
 
   useEffect(() => {
-    fetch("https://packdog-production.up.railway.app/api/products")
+    fetch("https://packdog-ion.up.railway.app/api/s")
       .then(r => r.json())
-      .then(data => { setProducts(data.products || []); setLoading(false); })
+      .then(data => { sets(data.s || []); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
@@ -95,22 +95,22 @@ export default function PackDogStore() {
       }
       .btn-outline:hover { border-color: #f5ede0; background: #f5ede015; }
 
-      .product-card {
+      .-card {
         background: #fff;
         cursor: pointer;
         overflow: hidden;
         transition: transform 0.2s, box-shadow 0.2s;
       }
-      .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+      .-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
 
-      .product-card img {
+      .-card img {
         width: 100%;
         height: 240px;
         object-fit: cover;
         display: block;
         transition: transform 0.4s;
       }
-      .product-card:hover img { transform: scale(1.04); }
+      .-card:hover img { transform: scale(1.04); }
 
       .add-btn {
         width: 100%;
@@ -183,7 +183,7 @@ export default function PackDogStore() {
 
       @media (max-width: 700px) {
         .cart-drawer { width: 100vw; }
-        .product-grid { grid-template-columns: 1fr 1fr !important; }
+        .-grid { grid-template-columns: 1fr 1fr !important; }
         .hero-headline { font-size: 52px !important; line-height: 1 !important; }
         .trust-grid { grid-template-columns: 1fr 1fr !important; }
         .review-grid { grid-template-columns: 1fr !important; }
@@ -199,13 +199,13 @@ export default function PackDogStore() {
     return () => { document.head.removeChild(link); document.head.removeChild(style); };
   }, []);
 
-  const addToCart = (product) => {
+  const addToCart = () => {
     setCart(prev => {
-      const existing = prev.find(i => i.id === product.id);
-      if (existing) return prev.map(i => i.id === product.id ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { ...product, qty: 1 }];
+      const existing = prev.find(i => i.id === .id);
+      if (existing) return prev.map(i => i.id === .id ? { ...i, qty: i.qty + 1 } : i);
+      return [...prev, { ..., qty: 1 }];
     });
-    setAdded(product.id);
+    setAdded(.id);
     setTimeout(() => setAdded(null), 1200);
   };
 
@@ -213,7 +213,7 @@ export default function PackDogStore() {
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
   const categories = ["ALL", "SAFETY", "TRAIL GEAR", "OUTDOOR GEAR", "CAR GEAR"];
-  const filtered = filter === "ALL" ? products : products.filter(p => p.category === filter.toLowerCase().replace(" ", "-"));
+  const filtered = filter === "ALL" ? s : s.filter(p => p.category === filter.toLowerCase().replace(" ", "-"));
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#f5ede0", minHeight: "100vh" }}>
@@ -368,7 +368,7 @@ export default function PackDogStore() {
         </div>
       </div>
 
-      {/* ── PRODUCTS ── */}
+      {/* ── S ── */}
       <div id="shop" style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 24px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 40, flexWrap: "wrap", gap: 20 }}>
           <div>
@@ -382,21 +382,21 @@ export default function PackDogStore() {
           </div>
         </div>
 
-        <div className="product-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {loading ? (
             <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "60px 0", fontFamily: "'Lora'", color: "#8b6a4a", fontSize: 15, fontStyle: "italic" }}>
               Loading gear...
             </div>
-          ) : filtered.map((product) => (
-            <div key={product.id} className="product-card">
+          ) : filtered.map(() => (
+            <div key={.id} className="-card">
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src={product.image} alt={product.name} />
+                <img src={.image} alt={.name} />
                 <div style={{ position: "absolute", top: 12, left: 12 }}>
                   <span style={{ background: "#c8721a", color: "#fff", fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 2, padding: "4px 8px", textTransform: "uppercase" }}>
-                    {product.category}
+                    {.category}
                   </span>
                 </div>
-                {added === product.id && (
+                {added === .id && (
                   <div style={{ position: "absolute", inset: 0, background: "#122112dd", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span style={{ fontFamily: "'Bebas Neue'", fontSize: 24, color: "#f5ede0", letterSpacing: 3 }}>ADDED ✓</span>
                   </div>
@@ -404,21 +404,21 @@ export default function PackDogStore() {
               </div>
               <div style={{ padding: "18px 20px 0" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: 20, color: "#122112", letterSpacing: 1, lineHeight: 1.2, flex: 1 }}>{product.name}</h3>
-                  <span style={{ fontFamily: "'Bebas Neue'", fontSize: 22, color: "#c8721a", letterSpacing: 1, marginLeft: 12 }}>${product.price}</span>
+                  <h3 style={{ fontFamily: "'Bebas Neue'", fontSize: 20, color: "#122112", letterSpacing: 1, lineHeight: 1.2, flex: 1 }}>{.name}</h3>
+                  <span style={{ fontFamily: "'Bebas Neue'", fontSize: 22, color: "#c8721a", letterSpacing: 1, marginLeft: 12 }}>${.price}</span>
                 </div>
-                <p style={{ fontFamily: "'Lora'", fontSize: 12, color: "#6b6b6b", marginTop: 6, lineHeight: 1.65, fontStyle: "italic" }}>{product.description}</p>
+                <p style={{ fontFamily: "'Lora'", fontSize: 12, color: "#6b6b6b", marginTop: 6, lineHeight: 1.65, fontStyle: "italic" }}>{.description}</p>
                 <div style={{ display: "flex", gap: 6, marginTop: 12, flexWrap: "wrap" }}>
-                  {(product.features || []).map(f => (
+                  {(.features || []).map(f => (
                     <span key={f} style={{ fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 600, letterSpacing: 1, color: "#2a7a3a", background: "#e8f4e8", padding: "3px 7px", textTransform: "uppercase" }}>✓ {f}</span>
                   ))}
                 </div>
                 <div style={{ marginTop: 10, marginBottom: 12, fontSize: 11, color: "#999", fontFamily: "'DM Sans'" }}>
-                  Ships in {product.deliveryDays} days from US
+                  Ships in {.deliveryDays} days from US
                 </div>
               </div>
-              <button className="add-btn" onClick={() => addToCart(product)}>
-                ADD TO CART — ${product.price}
+              <button className="add-btn" onClick={() => addToCart()}>
+                ADD TO CART — ${.price}
               </button>
             </div>
           ))}
@@ -444,7 +444,7 @@ export default function PackDogStore() {
             <button className="btn-primary" style={{ fontSize: 14, padding: "16px 40px" }}>GET THE BUNDLE</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            {products.slice(0, 4).map(p => (
+            {s.slice(0, 4).map(p => (
               <div key={p.id} style={{ background: "#1a3a1c", overflow: "hidden" }}>
                 <img src={p.image} alt={p.name} style={{ width: "100%", height: 100, objectFit: "cover" }} />
                 <div style={{ padding: "10px 12px" }}>
@@ -498,7 +498,7 @@ export default function PackDogStore() {
                     <div style={{ fontFamily: "'DM Sans'", fontSize: 11, color: "#8b6a4a", marginTop: 2 }}>🐾 {r.dog}</div>
                   </div>
                   <span style={{ fontFamily: "'DM Sans'", fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "#c8721a", background: "#f5ede0", padding: "4px 8px", textTransform: "uppercase" }}>
-                    {r.product}
+                    {r.}
                   </span>
                 </div>
               </div>
@@ -539,7 +539,7 @@ export default function PackDogStore() {
               <div style={{ marginTop: 12, fontFamily: "'DM Sans'", fontSize: 10, color: "#c8721a", letterSpacing: 1 }}>🐾 10% TO BEST FRIENDS ANIMAL SOCIETY</div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-              {[["Shop", ["All Products", "Car Gear", "Trail Gear", "Bundles"]], ["Company", ["About", "TikTok", "Contact", "Returns"]]].map(([title, links]) => (
+              {[["Shop", ["All s", "Car Gear", "Trail Gear", "Bundles"]], ["Company", ["About", "TikTok", "Contact", "Returns"]]].map(([title, links]) => (
                 <div key={title}>
                   <div style={{ fontFamily: "'DM Sans'", fontSize: 10, fontWeight: 700, letterSpacing: 3, color: "#c8721a", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
                   {links.map(l => (
