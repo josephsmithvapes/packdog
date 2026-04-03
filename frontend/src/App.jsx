@@ -7,9 +7,9 @@ const REVIEWS = [
   { name: "Carlos D.", dog: "Koda, 4yr Lab Mix", stars: 5, text: "We hike every weekend. Water bottle is compact, tough, and Koda figured it out immediately. Whole family uses PackDog gear now.", product: "Water Bottle" },
 ];
 
-const CLOUD = "YOUR_CLOUD_NAME";
+const CLOUD = "drlfyu2ee";
 const VIDEOS = [
-  { src: `https://collection.cloudinary.com/drlfyu2ee/2911d1a4734e03d59947e9aa6e7ecb3f`, label: "FEATURED" },
+  { src: `https://res.cloudinary.com/${CLOUD}/2911d1a4734e03d59947e9aa6e7ecb3f`, label: "FEATURED" },
   { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_2.mp4`, label: "" },
   { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_3.mp4`, label: "" },
 ];
