@@ -58,6 +58,10 @@ async function cjRequest(endpoint, method = 'GET', body = null) {
 // ── Submit a dropship order ───────────────────────────────────────────────────
 // Docs: POST /shopping/order/createOrderV2
 export async function submitOrder(orderPayload) {
+  if (process.env.CJDROP_TEST_MODE === "true") {
+    console.log("🧪 TEST MODE — CJ order payload:", JSON.stringify(orderPayload, null, 2))
+    return { result: true, data: { orderId: "TEST-" + Date.now() }, message: "Test mode - no order submitted" }
+  }
   const { orderId, shippingAddress, items } = orderPayload
 
   const payload = {
