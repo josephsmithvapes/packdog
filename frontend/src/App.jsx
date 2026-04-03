@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const REVIEWS = [
-  { name: "Megan R.", dog: "Bruno, 3yr Malinois", stars: 5, text: "The hammock saved my leather seats on a 6-hour drive to Bend. Bruno destroyed everything before this. Absolute must-buy for road trip dogs.", : "Car Hammock" },
-  { name: "Tyler K.", dog: "Odin, 2yr Husky", stars: 5, text: "Trail harness is incredible. Odin used to drag me down every hill. First walk with this thing he was right at my side. Shocked.", : "Trail Harness" },
-  { name: "Jess M.", dog: "Peanut, 5yr Corgi", stars: 5, text: "That LED collar TikTok made me buy this instantly. My neighborhood has zero streetlights. Now I can see Peanut from inside the house.", : "LED Collar" },
-  { name: "Carlos D.", dog: "Koda, 4yr Lab Mix", stars: 5, text: "We hike every weekend. This water bottle is compact, tough, and Koda figured it out immediately. Whole family uses PackDog gear now.", : "Trail Water Bottle" },
+  { name: "Megan R.", dog: "Bruno, 3yr Malinois", stars: 5, text: "The hammock saved my leather seats on a 6-hour drive to Bend. Bruno destroyed everything before this. Absolute must-buy for road trip dogs.", "Car Hammock" },
+  { name: "Tyler K.", dog: "Odin, 2yr Husky", stars: 5, text: "Trail harness is incredible. Odin used to drag me down every hill. First walk with this thing he was right at my side. Shocked.", "Trail Harness" },
+  { name: "Jess M.", dog: "Peanut, 5yr Corgi", stars: 5, text: "That LED collar TikTok made me buy this instantly. My neighborhood has zero streetlights. Now I can see Peanut from inside the house.",  "LED Collar" },
+  { name: "Carlos D.", dog: "Koda, 4yr Lab Mix", stars: 5, text: "We hike every weekend. This water bottle is compact, tough, and Koda figured it out immediately. Whole family uses PackDog gear now.",  "Trail Water Bottle" },
 ];
 
 export default function PackDogStore() {
