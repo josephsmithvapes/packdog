@@ -8,7 +8,7 @@ const REVIEWS = [
 ];
 
 export default function PackDogStore() {
-  const [s, sets] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
