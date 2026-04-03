@@ -16,9 +16,9 @@ export default function PackDogStore() {
   const [filter, setFilter] = useState("ALL");
 
   useEffect(() => {
-    fetch("https://packdog-ion.up.railway.app/api/s")
+    fetch("packdog-production.up.railway.app")
       .then(r => r.json())
-      .then(data => { sets(data.s || []); setLoading(false); })
+      .then(data => { setProducts(data.products || []); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
