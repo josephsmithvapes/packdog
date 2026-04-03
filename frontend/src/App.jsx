@@ -10,7 +10,7 @@ const REVIEWS = [
 const CLOUD = "drlfyu2ee";
 const VIDEOS = [
   { src: `https://res.cloudinary.com/${CLOUD}/video/2911d1a4734e03d59947e9aa6e7ecb3f`, label: "FEATURED" },
-  { src: `https://player.cloudinary.com/embed/?cloud_name=drlfyu2ee&public_id=vecteezy_an-adorable-tri-color-australian-shepherd-dog-happily-walks_75450584_kqyrg2`, label: "" },
+  { src: `https://res.cloudinary.com/${CLOUD}/video/vecteezy_an-adorable-tri-color-australian-shepherd-dog-happily-walks_75450584_kqyrg2`, label: "" },
   { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_3.mp4`, label: "" },
 ];
 
