@@ -9,7 +9,7 @@ const REVIEWS = [
 
 const CLOUD = "YOUR_CLOUD_NAME";
 const VIDEOS = [
-  { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_1.mp4`, label: "FEATURED" },
+  { src: `https://collection.cloudinary.com/drlfyu2ee/2911d1a4734e03d59947e9aa6e7ecb3f`, label: "FEATURED" },
   { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_2.mp4`, label: "" },
   { src: `https://res.cloudinary.com/${CLOUD}/video/upload/YOUR_VIDEO_3.mp4`, label: "" },
 ];
