@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
 
-const API_URL = import.meta.env.VITE_API_URL || ''
+const API_URL = import.meta.env.VITE_API_URL || 'https://packdog-production.up.railway.app'
 
 export default function Cart() {
   const { items, subtotal, updateQty, removeItem, clearCart } = useCart()
