@@ -421,4 +421,3 @@ export default function PackDogStore() {
         </div>
       </div>
 
-      {/* ── CHARI
